@@ -1,0 +1,5 @@
+/* just in case for canvas fallback, optional */
+canvas {
+  display: block;
+  background: black;
+}

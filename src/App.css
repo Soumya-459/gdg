@@ -1,0 +1,181 @@
+/* --- Body & App --- */
+body {
+  margin: 0;
+  font-family: Calibri, sans-serif;
+  background: transparent;
+  color: #00ff00;
+  overflow-x: hidden;
+}
+html{
+  background: #020617;
+}
+/* App container */
+.app {
+  max-width: 1200px;
+  margin: 0 auto; /* center horizontally */
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  background: transparent; /* for confetti layer */
+}
+
+/* Heading */
+h1 {
+  font-size: 36px;
+  color: #00ff00;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00ff00, 0 0 15px #00ff00, 0 0 25px #00ff00;
+  text-align:center;
+}
+
+/* Add Task Input */
+.addTask {
+  margin: 20px 0;
+}
+
+.addTask input {
+  padding: 6px;
+  width: 220px;
+  margin-right: 10px;
+  border: 1px solid #00ff00;
+  background: rgba(0,0,0,0.3);
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.addTask button {
+  padding: 6px 12px;
+  border: 1px solid #00ff00;
+  background: black;
+  color: #00ff00;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Board — horizontal layout */
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* center horizontally */
+  gap: 30px;              /* spacing between columns */
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10px;
+}
+
+/* Columns — hexagon with glowing neon effect */
+.column {
+  width: 340px;
+  min-height: 420px;
+  padding: 10px;
+
+ background: linear-gradient(145deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
+  
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+;
+
+  /* outer neon glow only */
+  box-shadow:
+    0 0 20px #00ff00,
+    0 0 40px #00ff00,
+    0 0 80px #00ff00;
+
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.column:hover  {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow:
+    0 0 40px #00ff00,
+    0 0 80px #00ff00,
+    0 0 120px #00ff00,
+    0 0 160px #00ff00;
+}
+
+.column h2 {
+  text-align: center;
+  color: #00ff00;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+}
+
+/* Task boxes — fit hexagon */
+.task {
+  width: 60%;          /* smaller to fit hexagon */
+  padding: 3px 5px;    /* reduce padding */
+  font-size: 14px;     /* smaller text */
+  margin: 4px auto;    /* center inside hexagon */
+  border-radius: 4px;
+
+  background: #111827; /* dark background to pop out */
+  color: #00ff00;      /* neon-ish text */
+  
+  box-shadow: 0 2px 6px rgba(0, 255, 0, 0.5); /* small outer glow for task */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.task:active {
+  cursor: grabbing;
+}
+
+.task:hover  {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 255, 0, 0.7); /* slight hover glow */
+}
+
+.task button {
+  background: red;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+/* Full-screen confetti canvas (for visual celebration) */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+/* Styling for the optional description text */
+.task-desc {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 4px 0 0 0;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+/* Ensure task cards can expand for descriptions */
+.task {
+  height: auto !important; /* Overrides any fixed height */
+  min-height: 40px;
+  padding: 10px;
+  flex-direction: row; /* Keeps text on left and X on right */
+}
+
+/* Optional: Make the description input slightly wider */
+.addTask input:last-of-type {
+  width: 300px;
+}
+.task div:first-child:hover {
+  background: rgba(0, 255, 0, 0.05); /* Subtle highlight when hovering over text */
+}
+
+.task-desc {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 4px 0 0 0;
+  font-style: italic;
+  word-wrap: break-word; /* Prevents long descriptions from breaking the hexagon */
+}
